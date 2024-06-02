@@ -23,7 +23,7 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-*firebase-adminsdk*
+*-service-account-key*
 
 firestore-debug.log
 firebase-debug.log
