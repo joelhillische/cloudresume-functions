@@ -7,19 +7,23 @@ async function executeSteps(data) {
   try {
     // Call stepOne
     const resultStepOne = await oneGetData(data);
-    console.log("Step One Result:", resultStepOne);
+    console.log("Step One Result:");
+    console.dir(resultStepOne, { depth: null, colors: true });
 
     // Call stepTwo
     const resultStepTwo = await twoGetRecommendations(resultStepOne);
-    console.log("Step Two Result:", resultStepTwo);
+    console.log("Step Two Result:");
+    console.dir(resultStepTwo, { depth: null, colors: true });
 
     // Call stepThree
     const resultStepThree = await threeGenerateDocs(resultStepTwo);
-    console.log("Step Three Result:", resultStepThree);
+    console.log("Step Three Result:");
+    console.dir(resultStepThree, { depth: null, colors: true });
 
     // Call stepFour
     const resultStepFour = await fourWriteDocs(resultStepThree);
-    console.log("Step Four Result:", resultStepFour);
+    console.log("Step Four Result:");
+    console.dir(resultStepFour, { depth: null, colors: true });
 
     return { status: "All steps complete", result: resultStepFour };
   } catch (error) {

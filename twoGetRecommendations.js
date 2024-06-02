@@ -21,7 +21,7 @@ async function twoGetRecommendations(oneGetData) {
 
   const prompts = generatePrompts(jobDescription, experiences, updates);
 
-  const rankedExperiences = rankExperiences(prompts);
+  const rankedExperiences = await rankExperiences(prompts);
 
   // Dummy logic for step two
   return {
