@@ -1,6 +1,6 @@
-const admin = require('firebase-admin');
-const db = require('./firestoreSetup');
-const testData = require('./testData');
+const admin = require("firebase-admin");
+const { db } = require("./firestoreSetup");
+const testData = require("./testData");
 
 async function addTestData() {
   for (const item of testData) {
@@ -24,4 +24,3 @@ afterAll(async () => {
 });
 
 module.exports = { addTestData, removeTestData };
-

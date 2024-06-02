@@ -7,8 +7,8 @@ describe("executeSteps", () => {
       numberOfPages: 5,
       obfuscateId: "obfuscateId1",
       documentTypes: ["pdf", "doc"],
-      jobId: "jobId1",
-      userId: "userId1",
+      jobId: "2KY1wbFT6DlAO0iWBnY5",
+      userId: "Rs6X53VQEL8JjRLCaxcy",
     };
 
     // Act: Call the function under test

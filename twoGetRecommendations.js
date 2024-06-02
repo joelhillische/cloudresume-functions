@@ -30,3 +30,5 @@ async function twoGetRecommendations(oneGetData) {
     userId,
   };
 }
+
+exports.twoGetRecommendations = twoGetRecommendations;
