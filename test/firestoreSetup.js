@@ -1,5 +1,5 @@
 const admin = require("firebase-admin");
-const serviceAccount = require("./test-cloudresume-firebase-adminsdk.json");
+const serviceAccount = require("./test-cloudresume-service-account-key.json");
 
 if (process.env.NODE_ENV === "test") {
   process.env.FIREBASE_STORAGE_EMULATOR_HOST = "localhost:9199";
