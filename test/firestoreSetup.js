@@ -1,5 +1,5 @@
 const admin = require("firebase-admin");
-const serviceAccount = require("./test-cloudresume-service-account-key.json");
+const serviceAccount = require("../cloudresume-service-account-key.json");
 
 if (process.env.NODE_ENV === "test") {
   process.env.FIREBASE_STORAGE_EMULATOR_HOST = "localhost:9199";
@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === "test") {
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  storageBucket: "cloudresume-testing.appspot.com",
+  storageBucket: "cloudresume-e9e4e.appspot.com",
 });
 
 const db = admin.firestore();

@@ -9,10 +9,13 @@ function generatePrompts(jobDescription, experiences, updates, defaultJobId) {
       const jobId = validateJobId(item[jobIdKey])
         ? item[jobIdKey]
         : defaultJobId;
-      if (!acc[jobId]) {
-        acc[jobId] = [];
+      if (jobId) {
+        // Ensure jobId is valid and not undefined
+        if (!acc[jobId]) {
+          acc[jobId] = [];
+        }
+        acc[jobId].push(item.description);
       }
-      acc[jobId].push(item.description);
       return acc;
     }, {});
   };
@@ -33,13 +36,13 @@ function generatePrompts(jobDescription, experiences, updates, defaultJobId) {
   }
 
   // Generate prompts for each jobId
-  const prompts = Object.keys(groupedItems).map((jobId) => {
+  const generatedPrompts = Object.keys(groupedItems).map((jobId) => {
     const items = groupedItems[jobId].join(". ");
-    return {
-      jobId,
-      prompt: `Job Description:\n${jobDescription}\n\nList of Experiences and Updates for Job ID ${jobId}:\n  "${items}"\n\nRank these experiences and updates from most to least relevant for the job description provided. Return the rankings in JSON format as an array of objects. Also, add why. The output should look like the following:\n{\n  rankings: [\n    {rank: <rank>, text: <item text>, reason: <reason>}, ...\n  ]\n}`,
-    };
+    return `Job Description:\n${jobDescription}\n\nList of Experiences and Updates for Job ID ${jobId}:\n"${items}"\n\nRank these experiences and updates from most to least relevant for the job description provided. Return the rankings in paragraph format with reasons for each ranking. The output should look like the following:\nRank: <rank>\nText: <item text>\nReason: <reason>\nOutput this as a json`;
   });
+
+  // Concatenate all generated prompts into a single paragraph and trim
+  const prompts = generatedPrompts.join("\n\n").trim();
 
   return prompts;
 }
