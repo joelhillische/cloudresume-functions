@@ -26,7 +26,12 @@ async function fetchUserData(userId) {
       .collection(collectionName)
       .where("userId", "==", userId)
       .get();
-    return snapshot.docs.map((doc) => doc.data());
+
+    const filteredDocs = snapshot.docs
+      .map((doc) => doc.data())
+      .filter((data) => !data.deleted);
+
+    return filteredDocs;
   };
 
   // Fetch data from multiple collections
