@@ -2,6 +2,12 @@
 
 Running a test is a command run from the root
 
+## Export current Firestore database
+
+```
+node exportFirestoreData.js
+```
+
 ## Start the emulator
 
 ```

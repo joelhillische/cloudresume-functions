@@ -2882,112 +2882,119 @@ module.exports = [
   },
   {
     "collection": "experiences",
-    "doc": "9JjTJCIOnvqQ0oV1jVwo",
+    "doc": "4eV2B0RJVzYwSxl0HqCL",
     "data": {
       "jobId": "O7RhFYU4ZwerNZe4Pqwo",
-      "resumeId": "mTf5Q9xxlnoQSLYuDuhA",
-      "description": "This is just a test description",
-      "userId": "Rs6X53VQEL8JjRLCaxcy",
-      "space": "uploaded",
-      "createdAt": {
-        "_seconds": 1714825835,
-        "_nanoseconds": 43000000
-      },
-      "updatedAt": {
-        "_seconds": 1714825835,
-        "_nanoseconds": 43000000
-      }
+      "description": "Start documentation on all aspects of DevOps including accounts, contact information, root token location",
+      "userId": "Rs6X53VQEL8JjRLCaxcy"
     }
   },
   {
     "collection": "experiences",
-    "doc": "cxTzyW7nizXHRsVUzGrK",
+    "doc": "6JkJlhGONGGPKATsAHKS",
     "data": {
       "jobId": "O7RhFYU4ZwerNZe4Pqwo",
-      "resumeId": "mTf5Q9xxlnoQSLYuDuhA",
-      "description": "This is just a test description",
-      "userId": "Rs6X53VQEL8JjRLCaxcy",
-      "space": "uploaded",
-      "createdAt": {
-        "_seconds": 1714825835,
-        "_nanoseconds": 349000000
-      },
-      "updatedAt": {
-        "_seconds": 1714825835,
-        "_nanoseconds": 349000000
-      },
-      "deletedAt": {
-        "_seconds": 1714877476,
-        "_nanoseconds": 504000000
-      },
-      "deleted": true
+      "description": "Fix Disposable Cloud Environment build failures and wrote documentation on how to fix it",
+      "userId": "Rs6X53VQEL8JjRLCaxcy"
     }
   },
   {
     "collection": "experiences",
-    "doc": "eoy6pmXTCGEPA58IvNNz",
+    "doc": "Hw83GC0uEth009wOy4tT",
     "data": {
       "jobId": "O7RhFYU4ZwerNZe4Pqwo",
-      "resumeId": "mTf5Q9xxlnoQSLYuDuhA",
-      "description": "This is just a test description",
-      "userId": "Rs6X53VQEL8JjRLCaxcy",
-      "space": "uploaded",
-      "createdAt": {
-        "_seconds": 1714825835,
-        "_nanoseconds": 200000000
-      },
-      "updatedAt": {
-        "_seconds": 1714825835,
-        "_nanoseconds": 200000000
-      },
-      "deletedAt": {
-        "_seconds": 1714877476,
-        "_nanoseconds": 572000000
-      },
-      "deleted": true
+      "description": "Consolidated all users into specific AWS SSO groups with custom IAM policies applied",
+      "userId": "Rs6X53VQEL8JjRLCaxcy"
     }
   },
   {
     "collection": "experiences",
-    "doc": "il0w42BBuMxeABVy2HqO",
+    "doc": "JxAETuUDUcJwgyUl16hK",
     "data": {
       "jobId": "O7RhFYU4ZwerNZe4Pqwo",
-      "resumeId": "mTf5Q9xxlnoQSLYuDuhA",
-      "description": "This is just a test description",
-      "userId": "Rs6X53VQEL8JjRLCaxcy",
-      "space": "uploaded",
-      "createdAt": {
-        "_seconds": 1714825835,
-        "_nanoseconds": 510000000
-      },
-      "updatedAt": {
-        "_seconds": 1714825835,
-        "_nanoseconds": 510000000
-      }
+      "description": "Created demo ECS Fargate cluster via Terraform for developers to use as a template to create a Wiremock set up",
+      "userId": "Rs6X53VQEL8JjRLCaxcy"
     }
   },
   {
     "collection": "experiences",
-    "doc": "r7EfucXif1JdDSRyUtcS",
+    "doc": "M0CxqHVbV5bBQSWgSf2y",
     "data": {
       "jobId": "O7RhFYU4ZwerNZe4Pqwo",
-      "resumeId": "mTf5Q9xxlnoQSLYuDuhA",
-      "description": "This is just a test description",
-      "userId": "Rs6X53VQEL8JjRLCaxcy",
-      "space": "uploaded",
-      "createdAt": {
-        "_seconds": 1714825835,
-        "_nanoseconds": 657000000
-      },
-      "updatedAt": {
-        "_seconds": 1714825835,
-        "_nanoseconds": 657000000
-      },
-      "deletedAt": {
-        "_seconds": 1714877476,
-        "_nanoseconds": 634000000
-      },
-      "deleted": true
+      "description": "Troubleshot IAM permission issues for the Data Science team",
+      "userId": "Rs6X53VQEL8JjRLCaxcy"
+    }
+  },
+  {
+    "collection": "experiences",
+    "doc": "ORG0Wj3PiMqP6E6nRIXK",
+    "data": {
+      "jobId": "O7RhFYU4ZwerNZe4Pqwo",
+      "description": "Worked with Security to ensure PHI compliance over genetic data by changing multiple Terraform files in developers repositories to be compliant. As an example, adding private stanza for creation of S3 buckets",
+      "userId": "Rs6X53VQEL8JjRLCaxcy"
+    }
+  },
+  {
+    "collection": "experiences",
+    "doc": "OTl2W48GhmjbGHR0BpZl",
+    "data": {
+      "jobId": "O7RhFYU4ZwerNZe4Pqwo",
+      "description": "Helped implement AWS WAF in front of CloudFront/React sites",
+      "userId": "Rs6X53VQEL8JjRLCaxcy"
+    }
+  },
+  {
+    "collection": "experiences",
+    "doc": "RDDPw9Rdoag7HvGHoUoK",
+    "data": {
+      "jobId": "O7RhFYU4ZwerNZe4Pqwo",
+      "description": "Created privilege escalation process for developers in production using API Gateway, Lambda (NodeJS), Step Functions, DynamoDB (Dynamoose), and assume roles all created via Terraform",
+      "userId": "Rs6X53VQEL8JjRLCaxcy"
+    }
+  },
+  {
+    "collection": "experiences",
+    "doc": "ZK0ssLxhgssOb6eXuFwg",
+    "data": {
+      "jobId": "O7RhFYU4ZwerNZe4Pqwo",
+      "description": "Demonstrated new serverless Terraform module to replace the Serverless framework for the development team. Development team moved all Typescript lambdas from Serverless framework to Terraform based on my research and implementation",
+      "userId": "Rs6X53VQEL8JjRLCaxcy"
+    }
+  },
+  {
+    "collection": "experiences",
+    "doc": "dy863GIzR9UXMXMOInwL",
+    "data": {
+      "jobId": "O7RhFYU4ZwerNZe4Pqwo",
+      "description": "Created custom AWS Config rules to check S3 buckets, and other compliance issues and send alerts via Slack. I created this via Terraform, AWS Lambda (NodeJS), using the AWS SDK and Axios (for Slack alerting)",
+      "userId": "Rs6X53VQEL8JjRLCaxcy"
+    }
+  },
+  {
+    "collection": "experiences",
+    "doc": "eyY4KfdjaEJwimvM6cP7",
+    "data": {
+      "jobId": "O7RhFYU4ZwerNZe4Pqwo",
+      "description": "Worked on demonstrating streamlined Github actions / workflow",
+      "userId": "Rs6X53VQEL8JjRLCaxcy"
+    }
+  },
+  {
+    "collection": "experiences",
+    "doc": "tHw6IrAIzJPscxUI9vL3",
+    "data": {
+      "jobId": "O7RhFYU4ZwerNZe4Pqwo",
+      "description": "Work on refining DataDog to deliver better reporting for security and development teams",
+      "userId": "Rs6X53VQEL8JjRLCaxcy"
+    }
+  },
+  {
+    "collection": "experiences",
+    "doc": "wGE8Oj4SWIrFA7I81Mln",
+    "data": {
+      "jobId": "O7RhFYU4ZwerNZe4Pqwo",
+      "description": "Create Terraform modules for s3 buckets, and AWS SSO permission sets",
+      "userId": "Rs6X53VQEL8JjRLCaxcy"
     }
   },
   {
