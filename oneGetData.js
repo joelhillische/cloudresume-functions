@@ -28,7 +28,10 @@ async function fetchUserData(userId) {
       .get();
 
     const filteredDocs = snapshot.docs
-      .map((doc) => doc.data())
+      .map((doc) => {
+        const data = doc.data();
+        return { docId: doc.id, ...data };
+      })
       .filter((data) => !data.deleted);
 
     return filteredDocs;

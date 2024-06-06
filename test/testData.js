@@ -2956,9 +2956,9 @@ module.exports = [
     "collection": "experiences",
     "doc": "ZK0ssLxhgssOb6eXuFwg",
     "data": {
-      "jobId": "O7RhFYU4ZwerNZe4Pqwo",
       "description": "Demonstrated new serverless Terraform module to replace the Serverless framework for the development team. Development team moved all Typescript lambdas from Serverless framework to Terraform based on my research and implementation",
-      "userId": "Rs6X53VQEL8JjRLCaxcy"
+      "userId": "Rs6X53VQEL8JjRLCaxcy",
+      "jobId": "anotherjob"
     }
   },
   {
@@ -2992,9 +2992,9 @@ module.exports = [
     "collection": "experiences",
     "doc": "wGE8Oj4SWIrFA7I81Mln",
     "data": {
-      "jobId": "O7RhFYU4ZwerNZe4Pqwo",
       "description": "Create Terraform modules for s3 buckets, and AWS SSO permission sets",
-      "userId": "Rs6X53VQEL8JjRLCaxcy"
+      "userId": "Rs6X53VQEL8JjRLCaxcy",
+      "jobId": "anotherjob"
     }
   },
   {
