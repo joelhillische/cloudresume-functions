@@ -37,25 +37,29 @@ function generatePrompts(jobDescription, experiences, updates, defaultJobId) {
     }
   }
 
-  // Generate prompts for each jobId
-  const generatedPrompts = Object.keys(groupedItems).map((jobId) => {
-    const items = groupedItems[jobId].join(". ");
-    const jsonOutput = JSON.stringify(
-      {
-        experiences: {
-          "{{jobId}}": ["{{docId1}}", "{{docId2}}", "{{docId3}}"], // Replace {{docId1}}, {{docId2}}, {{docId3}} with actual document IDs
-        },
-      },
-      null,
-      2
-    );
-    return `Job Description:\n${jobDescription}\n\nList of Experiences and Updates for Job ID {{jobId}}:\n"${items}"\n\nRank these experiences and updates from most to least relevant for the job description provided. Return the rankings in paragraph format with reasons for each ranking. The output should look like the following:\n\nRank: 1\nText: <item text>\nReason: <reason>\nOutput this as a json\n\n${jsonOutput}`;
-  });
+  console.log(jobDescription);
 
-  // Concatenate all generated prompts into a single paragraph and trim
-  const prompts = generatedPrompts.join("\n\n").trim();
+  console.dir(groupedItems, { depth: null, colors: true });
 
-  return prompts;
+  const prompt = `Rank the following experiences based on their relevance to the given job description and return a JSON with the jobId as the key and an array of docIds based on the rank.
+
+  Include all jobIds
+
+  Do not include comments
+
+  Job Description:
+
+  ${jobDescription}
+
+  Jobs Hash:
+
+  ${JSON.stringify(groupedItems, null, 2)}
+
+  Return only the JSON response.`;
+
+  console.log(prompt);
+
+  return prompt;
 }
 
 module.exports = generatePrompts;

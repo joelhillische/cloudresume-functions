@@ -21,7 +21,8 @@ async function getSecret(name) {
 }
 
 async function rankExperiences(prompt) {
-  /*
+  console.log(prompt);
+
   const openai = new OpenAI({
     apiKey: await getSecret("OPENAI_API_KEY"), // This is the default and can be omitted
   });
@@ -40,9 +41,6 @@ async function rankExperiences(prompt) {
 
   // Parse the JSON string to an object
   const experienceRanking = JSON.parse(contentString);
-  */
-
-  const experienceRanking = {};
 
   return experienceRanking;
 }

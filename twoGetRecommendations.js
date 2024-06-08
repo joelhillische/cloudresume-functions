@@ -1,7 +1,7 @@
 const generatePrompts = require("./generatePrompts");
 const rankExperiences = require("./rankExperiences");
 
-async function twoGetRecommendations(oneGetData) {
+async function twoGetRecommendations(oneGetData, executeData) {
   /*
   return {
     jobId,
@@ -21,7 +21,28 @@ async function twoGetRecommendations(oneGetData) {
 
   const prompts = generatePrompts(jobDescription, experiences, updates);
 
-  const rankedExperiences = await rankExperiences(prompts);
+  // This called the OpenAI API
+  // const rankedExperiences = await rankExperiences(prompts);
+
+  const rankedExperiences = {
+    experiences: {
+      O7RhFYU4ZwerNZe4Pqwo: [
+        "JxAETuUDUcJwgyUl16hK",
+        "ORG0Wj3PiMqP6E6nRIXK",
+        "dy863GIzR9UXMXMOInwL",
+        "RDDPw9Rdoag7HvGHoUoK",
+        "OTl2W48GhmjbGHR0BpZl",
+        "6JkJlhGONGGPKATsAHKS",
+        "eyY4KfdjaEJwimvM6cP7",
+        "Hw83GC0uEth009wOy4tT",
+        "M0CxqHVbV5bBQSWgSf2y",
+        "4eV2B0RJVzYwSxl0HqCL",
+      ],
+      anotherjob: ["ZK0ssLxhgssOb6eXuFwg", "wGE8Oj4SWIrFA7I81Mln"],
+    },
+  };
+
+  executeData.twoGetRecommendations = rankedExperiences;
 
   // Dummy logic for step two
   return {

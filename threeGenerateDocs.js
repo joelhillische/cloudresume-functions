@@ -1,57 +1,117 @@
-const functions = require("firebase-functions");
 const axios = require("axios");
+const fs = require("fs").promises;
 
-/*
-{
-      experiences: {
-        rankings: [
-          {
-            Rank: 1,
-            Text: 'The ideal candidate will have a strong background in technology and a proven track record in programming technology-related challenges.',
-            Reason: 'This experience directly aligns with the job description provided, as it highlights the importance of having a strong background in technology and programming skills, which are essential for optimizing systems and conducting research.'
-          },
-          {
-            Rank: 2,
-            Text: 'This role involves conducting research, optimizing systems, streamlining operations.',
-            Reason: 'While this update provides a general overview of the job description, it lacks specific details or examples of relevant experiences. Therefore, it is ranked lower than the experience that directly addresses the required skills and qualifications.'
-          },
-          {
-            Rank: 3,
-            Text: "List of Experiences and Updates for Job ID O7RhFYU4ZwerNZe4Pqwo: 'This is just a test description. This is just a test description. This is just a test description. This is just a test description. This is just a test description'",
-            Reason: "This update does not provide any relevant information or examples of experiences related to the job description. It is ranked the lowest as it does not contribute to assessing the candidate's qualifications for the role."
-          }
-        ]
+// Function to generate document using Docmosis API
+async function generateDocument(
+  docmosisServer,
+  apiKey,
+  templateName,
+  outputName,
+  templateData
+) {
+  const url = `${docmosisServer}/render`;
+  const options = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    responseType: "stream",
+  };
+
+  const data = JSON.stringify({
+    accessKey: `${apiKey}`,
+    templateName: templateName,
+    outputName: outputName,
+    data: JSON.stringify(templateData),
+  });
+
+  try {
+    const response = await axios.post(url, data, {
+      headers,
+    });
+
+    console.log("Document generated successfully!");
+
+    return response;
+  } catch (error) {
+    console.error(
+      "Failed to generate document:",
+      error.response ? error.response.data : error.message
+    );
+    throw error;
+  }
+}
+
+async function threeGenerateDocs(twoGetRecommendations, executeData) {
+  try {
+    const { experiences, jobId, userId } = twoGetRecommendations;
+
+    console.log("We are printing out the executeData information!!!!!!");
+    console.dir(executeData, { depth: null, colors: true });
+
+    // We take the experiences and write them to a pdf/doc using docmosis
+
+    const templateName = "samples/WelcomeTemplate.docx";
+    const docmosisServer = "https://us1.dws4.docmosis.com/api";
+    const apiKey =
+      "NjNkNjhkNjMtNjJlMC00OGZhLWJlMDEtNDAzN2ZhYjg2NWJlOjE0ODgwMDQ3NzE";
+
+    const outputName = "test.pdf";
+
+    const templateData = {
+      title: "Welcome to Docmosis in the Cloud",
+      messages: [
+        { msg: "This cloud experience is better than I thought." },
+        { msg: "The sun is shining." },
+        { msg: "Right, now back to work." },
+      ],
+    };
+
+    /*
+    const docmosisResponse = await generateDocument(
+      docmosisServer,
+      apiKey,
+      templateName,
+      outputName,
+      templateData
+    );
+
+    console.log("typeof docmosis response ");
+    console.log(typeof docmosisResponse.data);
+    */
+
+    const options = {
+      headers: {
+        "Content-Type": "application/json",
       },
-      jobId: '2KY1wbFT6DlAO0iWBnY5',
-      userId: 'Rs6X53VQEL8JjRLCaxcy'
+      responseType: "stream",
+    };
+
+    const response = await axios.post(
+      `${docmosisServer}/render`,
+      JSON.stringify(templateData),
+      options
+    );
+    if (response.status === 200) {
+      const file = fs.createWriteStream(output);
+      response.data.pipe(file);
+      file.on("finish", () => {
+        file.close();
+        console.log(output, "created");
+      });
+    } else {
+      console.log("Error response:", response.status, response.statusText);
     }
-*/
 
-async function threeGenerateDocs(twoGetRecommendations) {
-  /*
-  return {
-    experiences: newExperiences,
-    jobId,
-    userId,
-  };
-  */
-
-  const { experiences, jobId, userId } = twoGetRecommendations;
-
-  console.log(experiences);
-  console.log(jobId);
-
-  // We take the experiences and write them to a pdf/doc using docmosis
-
-  // We return the value as a file and send it on
-  const docmosisResponse = "";
-
-  // Dummy logic for step three
-  return {
-    docmosisResponse,
-    jobId,
-    userId,
-  };
+    // Dummy logic for step three
+    return {
+      // docmosisResponse,
+      jobId,
+      userId,
+    };
+  } catch (error) {
+    console.error("An error occurred in threeGenerateDocs:", error);
+    throw error; // re-throw the error if you want to handle it further up the call stack
+  }
 }
 
 async function writeDataToFileAndUpload(data, bucketName, fileName) {

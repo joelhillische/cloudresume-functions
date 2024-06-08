@@ -1,6 +1,6 @@
 const admin = require("firebase-admin");
 
-async function oneGetData(data) {
+async function oneGetData(data, executeData) {
   const { userId, jobId } = data;
   console.log(`User ID: ${userId}, Job ID: ${jobId}`);
 
@@ -11,12 +11,16 @@ async function oneGetData(data) {
   const jobData = await fetchSpecificJob(jobId);
 
   // Combine the results
-  return {
+  const combinedResults = {
     jobId,
     userId,
     jobData,
     userData,
   };
+
+  executeData.oneGetData = combinedResults;
+
+  return combinedResults;
 }
 
 async function fetchUserData(userId) {
