@@ -2,9 +2,12 @@
   "dependencies": {
     "@google-cloud/secret-manager": "^5.6.0",
     "axios": "^1.7.2",
+    "cloudconvert": "^2.3.7",
+    "docxtemplater": "^3.47.4",
     "dotenv": "^16.4.5",
     "firebase-functions": "^5.0.1",
-    "openai": "^4.47.2"
+    "openai": "^4.47.2",
+    "pizzip": "^3.1.7"
   },
   "devDependencies": {
     "jest": "^29.7.0",

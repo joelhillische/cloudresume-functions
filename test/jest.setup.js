@@ -1,5 +1,5 @@
 const admin = require("firebase-admin");
-const { db } = require("./firestoreSetup");
+const { db, storage } = require("./firestoreSetup");
 const testData = require("./testData");
 
 async function addTestData() {

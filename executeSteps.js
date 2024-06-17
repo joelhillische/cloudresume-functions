@@ -1,7 +1,7 @@
 const { oneGetData } = require("./oneGetData");
 const { twoGetRecommendations } = require("./twoGetRecommendations");
 const { threeGenerateDocs } = require("./threeGenerateDocs");
-const { fourWriteDocs } = require("./fourWriteDocs");
+const { fourConvertDocs } = require("./fourConvertDocs");
 
 async function executeSteps(data) {
   let executeData = {};
@@ -21,12 +21,15 @@ async function executeSteps(data) {
     console.dir(resultStepTwo, { depth: null, colors: true });
 
     // Call stepThree
-    const resultStepThree = await threeGenerateDocs(resultStepTwo, executeData);
+    const resultStepThree = await threeFillInTemplate(
+      resultStepTwo,
+      executeData
+    );
     console.log("Step Three Result:");
     console.dir(resultStepThree, { depth: null, colors: true });
 
     // Call stepFour
-    const resultStepFour = await fourWriteDocs(resultStepThree);
+    const resultStepFour = await fourConvertDocs(resultStepThree);
     console.log("Step Four Result:");
     console.dir(resultStepFour, { depth: null, colors: true });
 
