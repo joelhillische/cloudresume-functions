@@ -23,18 +23,18 @@ async function getCloudConvertApiKey(name) {
   }
 }
 
-async function fourConvertDocs(fileName) {
+async function fourConvertDocs(fileUrl) {
   try {
     const cloudConvert = new CloudConvert(
       await getCloudConvertApiKey("SANDBOX_CLOUD_CONVERT_KEY"),
       true
     );
 
-    const localPath = `/tmp/${fileName}`;
     const job = await cloudConvert.jobs.create({
       tasks: {
         "import-my-file": {
-          operation: "import/upload",
+          operation: "import/url",
+          url: fileUrl,
         },
         "convert-to-pdf": {
           operation: "convert",
@@ -60,16 +60,7 @@ async function fourConvertDocs(fileName) {
     const exportPdfTask = job.tasks.find((task) => task.name === "export-pdf");
     const exportTxtTask = job.tasks.find((task) => task.name === "export-txt");
 
-    const uploadTask = job.tasks.filter(
-      (task) => task.name === "import-my-file"
-    )[0];
-
-    console.log(localPath);
-
-    const inputFile = fs.createReadStream(localPath);
-
-    await cloudConvert.tasks.upload(uploadTask, inputFile, fileName);
-
+    // Wait for the tasks to complete
     const exportPdfResult = await cloudConvert.tasks.wait(exportPdfTask.id);
     const exportTxtResult = await cloudConvert.tasks.wait(exportTxtTask.id);
 

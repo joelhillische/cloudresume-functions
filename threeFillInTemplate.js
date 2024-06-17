@@ -3,7 +3,7 @@ const PizZip = require("pizzip");
 const Docxtemplater = require("docxtemplater");
 const admin = require("firebase-admin");
 
-async function threeFillInTemplate() {
+async function threeFillInTemplate(resultStepTwo, executeData) {
   const templatePath = "docs/templates/input.docx";
   const localOutputPath = "/tmp/output.docx";
   const remoteOutputPath = "docs/originals/output.docx";
@@ -42,7 +42,14 @@ async function threeFillInTemplate() {
     console.log(`Document generated successfully at ${localOutputPath}`);
 
     // Upload the DOCX file to Firebase Storage
-    await uploadToFirebaseStorage(localOutputPath, remoteOutputPath);
+    const url = await uploadToFirebaseStorage(
+      localOutputPath,
+      remoteOutputPath
+    );
+
+    executeData.threeFillInTemplate = url;
+
+    return { url: url };
   } catch (error) {
     console.error("Error generating DOCX:", error);
   }
@@ -61,10 +68,18 @@ async function downloadFromFirebaseStorage(filePath) {
 async function uploadToFirebaseStorage(localPath, destination) {
   try {
     const bucket = admin.storage().bucket();
-    await bucket.upload(localPath, {
+    const [file] = await bucket.upload(localPath, {
       destination: destination,
     });
+    const [url] = await file.getSignedUrl({
+      action: "read",
+      expires: "03-01-2500", // set a far future expiration date
+    });
+
     console.log(`File uploaded to Firebase Storage at ${destination}`);
+    console.log(`View URL: ${url}`);
+
+    return url;
   } catch (error) {
     console.error("Error uploading to Firebase Storage:", error);
   }
