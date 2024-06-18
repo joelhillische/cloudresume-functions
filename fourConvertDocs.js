@@ -23,12 +23,14 @@ async function getCloudConvertApiKey(name) {
   }
 }
 
-async function fourConvertDocs(fileUrl) {
+async function fourConvertDocs(urlPayload) {
   try {
     const cloudConvert = new CloudConvert(
       await getCloudConvertApiKey("SANDBOX_CLOUD_CONVERT_KEY"),
       true
     );
+
+    const fileUrl = urlPayload.url;
 
     const job = await cloudConvert.jobs.create({
       tasks: {

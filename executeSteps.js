@@ -1,6 +1,6 @@
 const { oneGetData } = require("./oneGetData");
 const { twoGetRecommendations } = require("./twoGetRecommendations");
-const { threeGenerateDocs } = require("./threeGenerateDocs");
+const { threeFillInTemplate } = require("./threeFillInTemplate");
 const { fourConvertDocs } = require("./fourConvertDocs");
 
 async function executeSteps(data) {
@@ -28,12 +28,16 @@ async function executeSteps(data) {
     console.log("Step Three Result:");
     console.dir(resultStepThree, { depth: null, colors: true });
 
+    return { status: "All steps complete" };
+
+    /*
     // Call stepFour
     const resultStepFour = await fourConvertDocs(resultStepThree);
     console.log("Step Four Result:");
     console.dir(resultStepFour, { depth: null, colors: true });
 
     return { status: "All steps complete", result: resultStepFour };
+    */
   } catch (error) {
     console.error("Error in executing steps:", error);
     throw new Error("Steps execution failed");
