@@ -4,13 +4,6 @@ const testData = require("./testData");
 const fs = require("fs");
 const path = require("path");
 
-// Initialize the Firebase Admin SDK
-if (admin.apps.length === 0) {
-  admin.initializeApp({
-    storageBucket: "your-project-id.appspot.com", // replace with your project ID
-  });
-}
-
 // Function to upload file to Firebase Storage
 async function uploadFile(filePath, destination) {
   await storage.upload(filePath, {
