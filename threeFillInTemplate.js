@@ -4,11 +4,13 @@ const Docxtemplater = require("docxtemplater");
 const admin = require("firebase-admin");
 
 async function threeFillInTemplate(resultStepTwo, executeData) {
-  const templatePath = "docs/templates/input.docx";
-  const localOutputPath = "/tmp/output.docx";
-  const remoteOutputPath = "docs/originals/output.docx";
-
   try {
+    const templateId = executeData.initialData.templateId;
+
+    const templatePath = `docs/templates/${templateId}/template.docx`;
+    const localOutputPath = "/tmp/output.docx";
+    const remoteOutputPath = "docs/originals/output.docx";
+
     // Download the DOCX template from Firebase Storage
     const localTemplatePath = await downloadFromFirebaseStorage(templatePath);
 
@@ -25,9 +27,35 @@ async function threeFillInTemplate(resultStepTwo, executeData) {
     });
 
     const data = {
-      experience: "John Doe",
-      test: "123 Main St, Anytown, USA",
-      title: "This is a job title!",
+      experiences: [
+        {
+          job_title: "Some job title",
+          company: "Some company",
+          location: "This is a location",
+          descriptions: [
+            { text: "This is some text" },
+            { text: "This is some other text" },
+          ],
+        },
+        {
+          job_title: "Job title 2",
+          company: "Some 2 company",
+          location: "This is a 2nd location",
+          descriptions: [
+            { text: "This is some text" },
+            { text: "This is some other text" },
+          ],
+        },
+        {
+          job_title: "Job title 3",
+          company: "Some 3 company",
+          location: "This is a 3rd location",
+          descriptions: [
+            { text: "This is some text" },
+            { text: "This is some other text" },
+          ],
+        },
+      ],
     };
 
     // Render the document using the data
@@ -48,6 +76,9 @@ async function threeFillInTemplate(resultStepTwo, executeData) {
     );
 
     executeData.docxUrl = url;
+
+    console.log("This is the docx url");
+    console.log(url);
 
     return true;
   } catch (error) {

@@ -35,9 +35,6 @@ exports.generateResume = functions.firestore
         docId,
       });
       console.log("Steps execution result:", result);
-
-      // Optionally, write the result back to the document or another collection
-      await snap.ref.update({ status: "completed", result });
     } catch (error) {
       console.error("Error in generateResume function", error);
     }

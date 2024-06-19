@@ -12,6 +12,7 @@ describe("executeSteps", () => {
       jobId: "2KY1wbFT6DlAO0iWBnY5",
       userId: "Rs6X53VQEL8JjRLCaxcy",
       docId: "Ap7i8fyM8QPt5N4Pff9N",
+      templateId: "lijXG0Q0dIrWvzlGqbZI",
     };
 
     // Act: Call the function under test
@@ -27,6 +28,7 @@ describe("executeSteps", () => {
     expect(data.pdfUrl).toBeDefined();
     expect(data.txtUrl).toBeDefined();
     expect(data.docxUrl).toBeDefined();
+    expect(data.status).toBe("completed");
 
     // Assert: Verify the function behaves as expected
     expect(result.status).toBe("All steps complete");

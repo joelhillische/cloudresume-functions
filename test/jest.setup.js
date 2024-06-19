@@ -26,8 +26,6 @@ async function addTestData() {
     await db.collection(item.collection).doc(item.doc).set(item.data);
   }
 
-  console.log(getDownloadURL("docs/originals/testoutput.docx"));
-
   // Example file upload
   const filePath = path.join(__dirname, "input.docx"); // path to your file
   const destination = "docs/templates/input.docx"; // destination in the storage
@@ -50,7 +48,7 @@ afterAll(async () => {
 
   // Example file removal
   await storage.file("docs/templates/input.docx").delete();
-  await storage.file("docs/originals/output.docx").delete();
+  // await storage.file("docs/originals/output.docx").delete();
 });
 
 module.exports = { addTestData, removeTestData };

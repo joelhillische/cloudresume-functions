@@ -104,6 +104,8 @@ async function fourConvertDocs(executeData) {
       "This is output from threeFillInTemplate!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     );
 
+    console.log(pdfUrl, txtUrl);
+
     return true;
   } catch (error) {
     console.error("Error converting file with CloudConvert:", error);
