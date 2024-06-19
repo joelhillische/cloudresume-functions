@@ -20,15 +20,7 @@ async function fiveWriteToDatabase(executeData) {
     // Update the document with the provided data
     await docRef.update({ pdfUrl, txtUrl, docxUrl, status: "completed" });
 
-    const snapshot = await admin
-      .firestore()
-      .collection("generateResumes")
-      .doc(docId)
-      .get();
-
-    const data = snapshot.data();
-
-    return { pdfUrl: data.pdfUrl, txtUrl: data.txtUrl, docxUrl: data.docxUrl };
+    return { pdfUrl, txtUrl, docxUrl };
   } catch (error) {
     console.error(error);
   }
