@@ -22,9 +22,11 @@ async function executeSteps(data) {
     // Call stepFour
     await fourConvertDocs(executeData);
 
-    await fiveWriteToDatabase(executeData);
+    const urls = await fiveWriteToDatabase(executeData);
 
-    return { status: "All steps complete" };
+    console.log(urls);
+
+    return { status: "All steps complete", ...urls };
   } catch (error) {
     console.error("Error in executing steps:", error);
     throw new Error("Steps execution failed");

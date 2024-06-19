@@ -17,5 +17,8 @@ describe("executeSteps", () => {
 
     // Assert: Verify the function behaves as expected
     expect(result.status).toBe("All steps complete");
+    expect(result.pdfUrl).toBeDefined();
+    expect(result.txtUrl).toBeDefined();
+    expect(result.docxUrl).toBeDefined();
   });
 });
