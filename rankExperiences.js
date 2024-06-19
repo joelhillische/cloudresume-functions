@@ -34,7 +34,7 @@ async function rankExperiences(prompt) {
     temperature: 0,
   });
 
-  console.dir(completion, { depth: null, colors: true });
+  // console.dir(completion, { depth: null, colors: true });
 
   // Extract the content from the response
   const contentString = completion.choices[0].message.content;

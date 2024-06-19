@@ -20,7 +20,7 @@ async function fiveWriteToDatabase(executeData) {
     // Update the document with the provided data
     await docRef.update({ pdfUrl, txtUrl, docxUrl, status: "completed" });
 
-    return { pdfUrl, txtUrl, docxUrl };
+    return true;
   } catch (error) {
     console.error(error);
   }

@@ -46,7 +46,7 @@ async function threeGenerateDocs(twoGetRecommendations, executeData) {
     const { experiences, jobId, userId } = twoGetRecommendations;
 
     console.log("We are printing out the executeData information!!!!!!");
-    console.dir(executeData, { depth: null, colors: true });
+    // console.dir(executeData, { depth: null, colors: true });
 
     // We take the experiences and write them to a pdf/doc using docmosis
 

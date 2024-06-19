@@ -20,7 +20,7 @@ function generatePrompts(jobDescription, experiences, updates, defaultJobId) {
     }, {});
   };
 
-  console.dir(experiences, { depth: null, colors: true });
+  // console.dir(experiences, { depth: null, colors: true });
 
   // Group experiences and updates by jobId
   const groupedExperiences = groupByJobId(experiences, "jobId");
@@ -39,7 +39,7 @@ function generatePrompts(jobDescription, experiences, updates, defaultJobId) {
 
   console.log(jobDescription);
 
-  console.dir(groupedItems, { depth: null, colors: true });
+  // console.dir(groupedItems, { depth: null, colors: true });
 
   const prompt = `Rank the following experiences based on their relevance to the given job description and return a JSON with the jobId as the key and an array of docIds based on the rank.
 
