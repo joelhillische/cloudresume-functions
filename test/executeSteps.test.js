@@ -6,9 +6,10 @@ describe("executeSteps", () => {
     const mockData = {
       numberOfPages: 5,
       obfuscateId: "obfuscateId1",
-      documentTypes: ["pdf", "doc"],
+      documentTypes: ["pdf", "docx", "txt"],
       jobId: "2KY1wbFT6DlAO0iWBnY5",
       userId: "Rs6X53VQEL8JjRLCaxcy",
+      docId: "Ap7i8fyM8QPt5N4Pff9N",
     };
 
     // Act: Call the function under test

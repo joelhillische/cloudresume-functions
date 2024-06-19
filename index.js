@@ -32,6 +32,7 @@ exports.generateResume = functions.firestore
         documentTypes: documentTypes,
         jobId: jobId,
         userId,
+        docId,
       });
       console.log("Steps execution result:", result);
 

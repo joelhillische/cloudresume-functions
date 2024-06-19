@@ -1,7 +1,7 @@
 const generatePrompts = require("./generatePrompts");
 const rankExperiences = require("./rankExperiences");
 
-async function twoGetRecommendations(oneGetData, executeData) {
+async function twoGetRecommendations(oneGetData) {
   /*
   return {
     jobId,

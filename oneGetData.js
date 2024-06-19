@@ -18,8 +18,6 @@ async function oneGetData(executeData) {
     userData,
   };
 
-  executeData.oneGetData = combinedResults;
-
   return combinedResults;
 }
 
