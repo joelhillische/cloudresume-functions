@@ -1,7 +1,6 @@
 const admin = require("firebase-admin");
 const { db, storage } = require("./firestoreSetup");
 const testData = require("./testData");
-const fs = require("fs");
 const path = require("path");
 
 // Function to upload file to Firebase Storage
@@ -11,10 +10,23 @@ async function uploadFile(filePath, destination) {
   });
 }
 
+async function getDownloadURL(fileName) {
+  const bucket = admin.storage().bucket();
+  const file = bucket.file(fileName);
+  const [url] = await file.getSignedUrl({
+    action: "read",
+    expires: "03-17-2025", // Adjust the expiration date as needed
+  });
+
+  console.log("Download URL:", url);
+}
+
 async function addTestData() {
   for (const item of testData) {
     await db.collection(item.collection).doc(item.doc).set(item.data);
   }
+
+  console.log(getDownloadURL("docs/originals/testoutput.docx"));
 
   // Example file upload
   const filePath = path.join(__dirname, "input.docx"); // path to your file

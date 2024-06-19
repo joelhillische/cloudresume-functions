@@ -23,20 +23,28 @@ async function getCloudConvertApiKey(name) {
   }
 }
 
-async function fourConvertDocs(urlPayload) {
+async function fourConvertDocs(executeData) {
   try {
     const cloudConvert = new CloudConvert(
       await getCloudConvertApiKey("SANDBOX_CLOUD_CONVERT_KEY"),
       true
     );
 
-    const fileUrl = urlPayload.url;
+    let docxUrl = executeData.docxUrl;
+
+    if (process.env.NODE_ENV === "test") {
+      // Retrieve secret from environment variables
+      docxUrl =
+        "https://storage.googleapis.com/cloudresume-e9e4e.appspot.com/docs/originals/testoutput.docx?GoogleAccessId=firebase-adminsdk-i0nhm%40cloudresume-e9e4e.iam.gserviceaccount.com&Expires=1742187600&Signature=lrVvXzRCaJlbFHwC1Lcgu9fPv497Zh1Tro7znTXJ9fNLCmH2pwoQMEuTw%2BVXt6cCQVASwFY%2BFGi1nvhplOhESCYcr%2F2r8HDlYXmtrHkdmnmnLXdDgJRAqZ1hq02Aqmg%2FAlOW0pbuD6bzX%2BUWWjXT1qGQllvucvgr%2Bc9A3sl4jRVTF6yfT%2FLzH3x5y0y2LohuwxgfOIIF4k9byC6RRQx9crde9Z4tOeP3TIkB9csD5rmpNOlIIEUqF8ZkyzotpP3KV34kcVv4UKaLDpISlR1I%2BUg%2BCg0HxuXkwTn7z1oO7Ep%2BxLUhpnLo8gl5mV9QpTnYqx8dJOHZRSH9pg1ZDSk0Rg%3D%3D";
+    }
+
+    console.log(`docxUrl: ${docxUrl}`);
 
     const job = await cloudConvert.jobs.create({
       tasks: {
         "import-my-file": {
           operation: "import/url",
-          url: fileUrl,
+          url: docxUrl,
         },
         "convert-to-pdf": {
           operation: "convert",
@@ -47,6 +55,11 @@ async function fourConvertDocs(urlPayload) {
           operation: "convert",
           input: "import-my-file",
           output_format: "txt",
+        },
+        "convert-to-rtf": {
+          operation: "convert",
+          input: "import-my-file",
+          output_format: "rtf",
         },
         "export-pdf": {
           operation: "export/url",
@@ -68,18 +81,15 @@ async function fourConvertDocs(urlPayload) {
 
     const cloudConvertPdfUrl =
       exportPdfResult.result?.files?.[0]?.url ?? "URL not available";
-    const cloudConvertTextUrl =
+    const cloudConvertTxtUrl =
       exportTxtResult.result?.files?.[0]?.url ?? "URL not available";
 
-    console.log("PDF URL:", cloudConvertPdfUrl);
-    console.log("Signed TXT URL:", cloudConvertTextUrl);
-
-    const pdfViewUrl = await uploadToFirebaseStorage(
+    const pdfUrl = await uploadToFirebaseStorage(
       cloudConvertPdfUrl,
       "docs/processed/output.pdf"
     );
-    const txtViewUrl = await uploadToFirebaseStorage(
-      cloudConvertTextUrl,
+    const txtUrl = await uploadToFirebaseStorage(
+      cloudConvertTxtUrl,
       "docs/processed/output.txt"
     );
 
@@ -87,9 +97,14 @@ async function fourConvertDocs(urlPayload) {
       "Files successfully converted and uploaded to Firebase Storage"
     );
 
-    console.log(`pdfviewurl: ${pdfViewUrl} txtviewurl: ${txtViewUrl}`);
+    executeData.pdfUrl = pdfUrl;
+    executeData.txtUrl = txtUrl;
 
-    return { pdfViewUrl, txtViewUrl };
+    console.log(
+      "This is output from threeFillInTemplate!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    );
+
+    return true;
   } catch (error) {
     console.error("Error converting file with CloudConvert:", error);
     throw error;

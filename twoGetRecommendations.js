@@ -42,8 +42,6 @@ async function twoGetRecommendations(oneGetData, executeData) {
     },
   };
 
-  executeData.twoGetRecommendations = rankedExperiences;
-
   // Dummy logic for step two
   return {
     experiences: rankedExperiences,

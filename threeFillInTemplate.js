@@ -47,9 +47,9 @@ async function threeFillInTemplate(resultStepTwo, executeData) {
       remoteOutputPath
     );
 
-    executeData.threeFillInTemplate = url;
+    executeData.docxUrl = url;
 
-    return { url: url };
+    return true;
   } catch (error) {
     console.error("Error generating DOCX:", error);
   }

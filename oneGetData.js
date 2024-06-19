@@ -1,7 +1,7 @@
 const admin = require("firebase-admin");
 
-async function oneGetData(data, executeData) {
-  const { userId, jobId } = data;
+async function oneGetData(executeData) {
+  const { userId, jobId } = executeData.initialData;
   console.log(`User ID: ${userId}, Job ID: ${jobId}`);
 
   // Fetch user data
