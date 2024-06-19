@@ -24,8 +24,6 @@ async function executeSteps(data) {
 
     const urls = await fiveWriteToDatabase(executeData);
 
-    console.log(urls);
-
     return { status: "All steps complete", ...urls };
   } catch (error) {
     console.error("Error in executing steps:", error);

@@ -18,7 +18,7 @@ async function fiveWriteToDatabase(executeData) {
       .doc(docId);
 
     // Update the document with the provided data
-    await docRef.update({ pdfUrl, txtUrl, docxUrl });
+    await docRef.update({ pdfUrl, txtUrl, docxUrl, status: "completed" });
 
     const snapshot = await admin
       .firestore()
