@@ -1,8 +1,9 @@
-const { oneGetData } = require("./oneGetData");
-const { twoGetRecommendations } = require("./twoGetRecommendations");
-const { threeFillInTemplate } = require("./threeFillInTemplate");
-const { fourConvertDocs } = require("./fourConvertDocs");
-const { fiveWriteToDatabase } = require("./fiveWriteToDatabase");
+const { getInitialData } = require("./getInitialData");
+const { getRecommendations } = require("./getRecommendations");
+const { fillInTemplate } = require("./fillInTemplate");
+const { convertDocs } = require("./convertDocs");
+const { gatherData } = require("./gatherData");
+const { writeToDatabase } = require("./writeToDatabase");
 
 async function executeSteps(data) {
   let executeData = {
@@ -11,18 +12,20 @@ async function executeSteps(data) {
 
   try {
     // Call stepOne
-    const resultStepOne = await oneGetData(executeData);
+    const resultStepOne = await getInitialData(executeData);
 
     // Call stepTwo
-    const resultStepTwo = await twoGetRecommendations(resultStepOne);
+    const resultStepTwo = await getRecommendations(resultStepOne);
 
-    // Call stepThree
-    await threeFillInTemplate(resultStepTwo, executeData);
+    await gatherData(executeData);
 
-    // Call stepFour
-    await fourConvertDocs(executeData);
+    // Creates docx by filling in the template
+    await fillInTemplate(resultStepTwo, executeData);
 
-    const urls = await fiveWriteToDatabase(executeData);
+    // Call to cloudconvert and writes pdf, txt to executeData
+    await convertDocs(executeData);
+
+    const urls = await writeToDatabase(executeData);
 
     return { status: "All steps complete", ...urls };
   } catch (error) {

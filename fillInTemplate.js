@@ -3,7 +3,7 @@ const PizZip = require("pizzip");
 const Docxtemplater = require("docxtemplater");
 const admin = require("firebase-admin");
 
-async function threeFillInTemplate(resultStepTwo, executeData) {
+async function fillInTemplate(resultStepTwo, executeData) {
   try {
     const templateId = executeData.initialData.templateId;
 
@@ -118,4 +118,4 @@ async function uploadToFirebaseStorage(localPath, destination) {
   }
 }
 
-exports.threeFillInTemplate = threeFillInTemplate;
+exports.fillInTemplate = fillInTemplate;

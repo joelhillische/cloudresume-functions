@@ -1,7 +1,7 @@
 const generatePrompts = require("./generatePrompts");
 const rankExperiences = require("./rankExperiences");
 
-async function twoGetRecommendations(oneGetData) {
+async function getRecommendations(oneGetData) {
   /*
   return {
     jobId,
@@ -50,4 +50,4 @@ async function twoGetRecommendations(oneGetData) {
   };
 }
 
-exports.twoGetRecommendations = twoGetRecommendations;
+exports.getRecommendations = getRecommendations;

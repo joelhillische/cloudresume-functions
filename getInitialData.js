@@ -1,6 +1,6 @@
 const admin = require("firebase-admin");
 
-async function oneGetData(executeData) {
+async function getInitialData(executeData) {
   const { userId, jobId } = executeData.initialData;
   console.log(`User ID: ${userId}, Job ID: ${jobId}`);
 
@@ -72,4 +72,4 @@ async function fetchSpecificJob(jobId) {
   return specificJobDoc.exists ? specificJobDoc.data() : null;
 }
 
-exports.oneGetData = oneGetData;
+exports.getInitialData = getInitialData;

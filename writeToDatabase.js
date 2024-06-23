@@ -1,6 +1,6 @@
 const admin = require("firebase-admin");
 
-async function fiveWriteToDatabase(executeData) {
+async function writeToDatabase(executeData) {
   try {
     console.log(executeData.pdfUrl);
     console.log(executeData.initialData.docId);
@@ -28,14 +28,6 @@ async function fiveWriteToDatabase(executeData) {
     console.log(executeData);
 
     // Create resume with all of the recommendations which are in the executeData variable
-
-    const activities = executeData.activities || [];
-    const certifications = executeData.certifications || [];
-    const description = executeData.description || [];
-    const educations = executeData.educations || [];
-    const experiences = executeData.experiences || [];
-    const motto = executeData.motto || [];
-    const skills = executeData.skills || [];
 
     await addOrUpdateResume(executeData);
 
@@ -137,22 +129,4 @@ const addOrUpdateResume = async (executeData) => {
   }
 };
 
-// Example usage
-const executeData = {
-  initialData: {
-    userId: "user123",
-    jobId: "job456",
-    experiences: [],
-    activities: [],
-    skills: [],
-    educations: [],
-    certifications: [],
-    description: "Sample description",
-    motto: "Sample motto",
-    docxUrl: "http://example.com/docx",
-    txtUrl: "http://example.com/txt",
-    pdfUrl: "http://example.com/pdf",
-  },
-};
-
-exports.fiveWriteToDatabase = fiveWriteToDatabase;
+exports.writeToDatabase = writeToDatabase;

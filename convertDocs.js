@@ -23,7 +23,7 @@ async function getCloudConvertApiKey(name) {
   }
 }
 
-async function fourConvertDocs(executeData) {
+async function convertDocs(executeData) {
   try {
     let cloudConvert;
 
@@ -140,4 +140,4 @@ async function uploadToFirebaseStorage(fileUrl, destination) {
   }
 }
 
-exports.fourConvertDocs = fourConvertDocs;
+exports.convertDocs = convertDocs;
