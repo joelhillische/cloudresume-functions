@@ -10,15 +10,16 @@ async function getInitialData(executeData) {
   // Fetch specific job data
   const jobData = await fetchSpecificJob(jobId);
 
-  // Combine the results
-  const combinedResults = {
-    jobId,
-    userId,
-    jobData,
-    userData,
-  };
+  executeData.experiences = userData.experiences;
+  executeData.jobs = userData.jobs;
+  executeData.activities = userData.activities;
+  executeData.educations = userData.educations;
+  executeData.skills = userData.skills;
+  executeData.certifications = userData.certifications;
+  executeData.updates = userData.updates;
+  executeData.jobData = jobData;
 
-  return combinedResults;
+  return true;
 }
 
 async function fetchUserData(userId) {
@@ -40,21 +41,28 @@ async function fetchUserData(userId) {
   };
 
   // Fetch data from multiple collections
-  const [experiences, jobs, certs, educations, skills, activities, updates] =
-    await Promise.all([
-      fetchCollectionByUserId("experiences", userId),
-      fetchCollectionByUserId("jobs", userId),
-      fetchCollectionByUserId("certs", userId),
-      fetchCollectionByUserId("educations", userId),
-      fetchCollectionByUserId("skills", userId),
-      fetchCollectionByUserId("activities", userId),
-      fetchCollectionByUserId("updates", userId),
-    ]);
+  const [
+    experiences,
+    jobs,
+    certifications,
+    educations,
+    skills,
+    activities,
+    updates,
+  ] = await Promise.all([
+    fetchCollectionByUserId("experiences", userId),
+    fetchCollectionByUserId("jobs", userId),
+    fetchCollectionByUserId("certs", userId),
+    fetchCollectionByUserId("educations", userId),
+    fetchCollectionByUserId("skills", userId),
+    fetchCollectionByUserId("activities", userId),
+    fetchCollectionByUserId("updates", userId),
+  ]);
 
   return {
     experiences,
     jobs,
-    certs,
+    certifications,
     educations,
     skills,
     activities,

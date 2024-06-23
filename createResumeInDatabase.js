@@ -1,34 +1,8 @@
 const admin = require("firebase-admin");
 
-async function writeToDatabase(executeData) {
+async function createResumeInDatabase(executeData) {
   try {
-    console.log(executeData.pdfUrl);
-    console.log(executeData.initialData.docId);
-
-    const docId = executeData.initialData.docId;
-
-    const pdfUrl = executeData.pdfUrl;
-    const txtUrl = executeData.txtUrl;
-    const docxUrl = executeData.docxUrl;
-
-    // Reference to the document with the specific docId
-    const generateResumeRef = await admin
-      .firestore()
-      .collection("generateResumes")
-      .doc(docId);
-
-    // Update the document with the provided data
-    await generateResumeRef.update({
-      pdfUrl,
-      txtUrl,
-      docxUrl,
-      status: "completed",
-    });
-
-    console.log(executeData);
-
     // Create resume with all of the recommendations which are in the executeData variable
-
     await addOrUpdateResume(executeData);
 
     return true;
@@ -39,7 +13,6 @@ async function writeToDatabase(executeData) {
 
 const addOrUpdateResume = async (executeData) => {
   const { jobId, userId } = executeData.initialData;
-  const { docxUrl, pdfUrl, txtUrl } = executeData;
 
   const experiences = executeData.experiences || [];
   const activities = executeData.activities || [];
@@ -114,9 +87,6 @@ const addOrUpdateResume = async (executeData) => {
         description: description,
         motto: motto,
         currentVersion: newVersion,
-        docxUrl: docxUrl,
-        txtUrl: txtUrl,
-        pdfUrl: pdfUrl,
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       });
 
@@ -129,4 +99,4 @@ const addOrUpdateResume = async (executeData) => {
   }
 };
 
-exports.writeToDatabase = writeToDatabase;
+exports.createResumeInDatabase = createResumeInDatabase;

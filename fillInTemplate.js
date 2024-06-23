@@ -3,7 +3,7 @@ const PizZip = require("pizzip");
 const Docxtemplater = require("docxtemplater");
 const admin = require("firebase-admin");
 
-async function fillInTemplate(resultStepTwo, executeData) {
+async function fillInTemplate(executeData) {
   try {
     const templateId = executeData.initialData.templateId;
 

@@ -1,23 +1,14 @@
 const generatePrompts = require("./generatePrompts");
 const rankExperiences = require("./rankExperiences");
 
-async function getRecommendations(oneGetData) {
-  /*
-  return {
-    jobId,
-    userId,
-    jobData,
-    userData,
-  };
-  */
+async function getRecommendations(executeData) {
+  const { userId, jobId } = executeData.initialData;
 
-  const { userId, jobId, userData, jobData } = oneGetData;
+  const updates = executeData.updates;
 
-  const jobDescription = jobData.description;
+  const experiences = executeData.experiences;
 
-  const updates = userData.updates;
-
-  const experiences = userData.experiences;
+  const jobDescription = executeData.jobData.description;
 
   const prompts = generatePrompts(jobDescription, experiences, updates);
 
@@ -38,16 +29,12 @@ async function getRecommendations(oneGetData) {
         "M0CxqHVbV5bBQSWgSf2y",
         "4eV2B0RJVzYwSxl0HqCL",
       ],
-      anotherjob: ["ZK0ssLxhgssOb6eXuFwg", "wGE8Oj4SWIrFA7I81Mln"],
     },
   };
 
-  // Dummy logic for step two
-  return {
-    experiences: rankedExperiences,
-    jobId,
-    userId,
-  };
+  // executeData.experiences =
+
+  return true;
 }
 
 exports.getRecommendations = getRecommendations;

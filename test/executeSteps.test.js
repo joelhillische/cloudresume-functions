@@ -23,15 +23,6 @@ describe("executeSteps", () => {
     // Act: Call the function under test
     const result = await executeSteps(mockData);
 
-    const docRef = await db.collection("generateResumes").doc(docId).get();
-
-    const data = docRef.data();
-
-    expect(data.pdfUrl).toBeDefined();
-    expect(data.txtUrl).toBeDefined();
-    expect(data.docxUrl).toBeDefined();
-    expect(data.status).toBe("completed");
-
     // Assert: Verify the function behaves as expected
     expect(result.status).toBe("All steps complete");
   });
