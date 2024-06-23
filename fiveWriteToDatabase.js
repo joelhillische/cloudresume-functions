@@ -109,8 +109,7 @@ const addOrUpdateResume = async (executeData) => {
 
       await versionRef.set({
         ...resumeData,
-        version: resumeData.currentVersion,
-        movedAt: admin.firestore.FieldValue.serverTimestamp(),
+        versionCreatedAt: admin.firestore.FieldValue.serverTimestamp(),
       });
 
       // Update the resume document with the new data and incremented version
