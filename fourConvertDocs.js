@@ -25,17 +25,18 @@ async function getCloudConvertApiKey(name) {
 
 async function fourConvertDocs(executeData) {
   try {
-    const cloudConvert = new CloudConvert(
-      await getCloudConvertApiKey("SANDBOX_CLOUD_CONVERT_KEY"),
-      true
-    );
+    let cloudConvert;
 
     let docxUrl = executeData.docxUrl;
 
     if (process.env.NODE_ENV === "test") {
+      cloudConvert = new CloudConvert(
+        await getCloudConvertApiKey("SANDBOX_CLOUD_CONVERT_KEY"),
+        true
+      );
       // Retrieve secret from environment variables
       docxUrl =
-        "https://storage.googleapis.com/cloudresume-e9e4e.appspot.com/docs/originals/testoutput.docx?GoogleAccessId=firebase-adminsdk-i0nhm%40cloudresume-e9e4e.iam.gserviceaccount.com&Expires=1742187600&Signature=lrVvXzRCaJlbFHwC1Lcgu9fPv497Zh1Tro7znTXJ9fNLCmH2pwoQMEuTw%2BVXt6cCQVASwFY%2BFGi1nvhplOhESCYcr%2F2r8HDlYXmtrHkdmnmnLXdDgJRAqZ1hq02Aqmg%2FAlOW0pbuD6bzX%2BUWWjXT1qGQllvucvgr%2Bc9A3sl4jRVTF6yfT%2FLzH3x5y0y2LohuwxgfOIIF4k9byC6RRQx9crde9Z4tOeP3TIkB9csD5rmpNOlIIEUqF8ZkyzotpP3KV34kcVv4UKaLDpISlR1I%2BUg%2BCg0HxuXkwTn7z1oO7Ep%2BxLUhpnLo8gl5mV9QpTnYqx8dJOHZRSH9pg1ZDSk0Rg%3D%3D";
+        "https://firebasestorage.googleapis.com/v0/b/cloudresume-e9e4e.appspot.com/o/docs%2Ftests%2Foutput.docx?alt=media&token=1060e828-8121-4b23-9a23-863e43b60b52";
     }
 
     console.log(`docxUrl: ${docxUrl}`);
@@ -84,17 +85,15 @@ async function fourConvertDocs(executeData) {
     const cloudConvertTxtUrl =
       exportTxtResult.result?.files?.[0]?.url ?? "URL not available";
 
+    const outputLocation = executeData.initialData.outputLocation;
+
     const pdfUrl = await uploadToFirebaseStorage(
       cloudConvertPdfUrl,
-      "docs/processed/output.pdf"
+      `${outputLocation}/output.pdf`
     );
     const txtUrl = await uploadToFirebaseStorage(
       cloudConvertTxtUrl,
-      "docs/processed/output.txt"
-    );
-
-    console.log(
-      "Files successfully converted and uploaded to Firebase Storage"
+      `{outputLocation}/output.txt`
     );
 
     executeData.pdfUrl = pdfUrl;
@@ -104,7 +103,8 @@ async function fourConvertDocs(executeData) {
       "This is output from threeFillInTemplate!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     );
 
-    console.log(pdfUrl, txtUrl);
+    console.log(`pdfUrl: ${pdfUrl}`);
+    console.log(`txtUrl: ${txtUrl}`);
 
     return true;
   } catch (error) {

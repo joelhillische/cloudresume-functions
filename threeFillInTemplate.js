@@ -7,9 +7,11 @@ async function threeFillInTemplate(resultStepTwo, executeData) {
   try {
     const templateId = executeData.initialData.templateId;
 
+    const outputLocation = executeData.initialData.outputLocation;
+
     const templatePath = `docs/templates/${templateId}/template.docx`;
     const localOutputPath = "/tmp/output.docx";
-    const remoteOutputPath = "docs/originals/output.docx";
+    const remoteOutputPath = `${outputLocation}/output.docx`;
 
     // Download the DOCX template from Firebase Storage
     const localTemplatePath = await downloadFromFirebaseStorage(templatePath);
