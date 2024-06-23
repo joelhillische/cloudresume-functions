@@ -3,6 +3,7 @@ const { getRecommendations } = require("./getRecommendations");
 const { fillInTemplate } = require("./fillInTemplate");
 const { convertDocs } = require("./convertDocs");
 const { createResumeInDatabase } = require("./createResumeInDatabase");
+const { writeUrlsToDatabase } = require("./writeUrlsToDatabase");
 
 async function executeSteps(data) {
   let executeData = {
@@ -27,7 +28,7 @@ async function executeSteps(data) {
 
     console.log(executeData);
 
-    // await writeUrlsToDatabase(executeData);
+    await writeUrlsToDatabase(executeData);
 
     const pdfUrl = executeData.pdfUrl;
     const txtUrl = executeData.txtUrl;

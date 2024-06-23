@@ -4,22 +4,27 @@ async function getInitialData(executeData) {
   const { userId, jobId } = executeData.initialData;
   console.log(`User ID: ${userId}, Job ID: ${jobId}`);
 
-  // Fetch user data
-  const userData = await fetchUserData(userId);
+  try {
+    // Fetch user data
+    const userData = await fetchUserData(userId);
 
-  // Fetch specific job data
-  const jobData = await fetchSpecificJob(jobId);
+    // Fetch specific job data
+    const jobData = await fetchSpecificJob(jobId);
 
-  executeData.experiences = userData.experiences;
-  executeData.jobs = userData.jobs;
-  executeData.activities = userData.activities;
-  executeData.educations = userData.educations;
-  executeData.skills = userData.skills;
-  executeData.certifications = userData.certifications;
-  executeData.updates = userData.updates;
-  executeData.jobData = jobData;
+    executeData.experiences = userData.experiences;
+    executeData.jobs = userData.jobs;
+    executeData.activities = userData.activities;
+    executeData.educations = userData.educations;
+    executeData.skills = userData.skills;
+    executeData.certifications = userData.certifications;
+    executeData.updates = userData.updates;
+    executeData.jobData = jobData;
 
-  return true;
+    return true;
+  } catch (error) {
+    console.error("Error fetching initial data:", error);
+    return false;
+  }
 }
 
 async function fetchUserData(userId) {
