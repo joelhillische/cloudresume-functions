@@ -23,6 +23,7 @@ async function writeUrlsToDatabase(executeData) {
       // If a resume with the same userId and jobId already exists
       const resumeDoc = resumeQuerySnapshot.docs[0];
 
+      // We don't increment the resume version number because this is part of the initial resume add
       await resumeDoc.ref.update({
         docxUrl,
         pdfUrl,

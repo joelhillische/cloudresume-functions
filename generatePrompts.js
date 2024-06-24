@@ -41,9 +41,7 @@ function generatePrompts(jobDescription, experiences, updates, defaultJobId) {
 
   // console.dir(groupedItems, { depth: null, colors: true });
 
-  const prompt = `Rank the following experiences based on their relevance to the given job description and return a JSON with the jobId as the key and an array of docIds based on the rank.
-
-  Include all jobIds
+  const prompt = `Rank the following experiences based on their relevance to the given job description and return a JSON array of docIds based on the rank.
 
   Do not include comments
 
