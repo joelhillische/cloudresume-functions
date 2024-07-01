@@ -21,6 +21,9 @@ const addOrUpdateResume = async (executeData) => {
   const certifications = executeData.certifications || [];
   const description = executeData.description || "";
   const motto = executeData.motto || "";
+  const docxUrl = executeData.docxUrl || "";
+  const pdfUrl = executeData.pdfUrl || "";
+  const txtUrl = executeData.txtUrl || "";
 
   try {
     // Query to check if a resume with the same userId and jobId already exists

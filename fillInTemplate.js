@@ -31,7 +31,7 @@ async function fillInTemplate(executeData) {
     const data = {
       experiences: [
         {
-          job_title: "Some job title",
+          jobTitle: "Some job title",
           company: "Some company",
           location: "This is a location",
           descriptions: [
@@ -40,7 +40,7 @@ async function fillInTemplate(executeData) {
           ],
         },
         {
-          job_title: "Job title 2",
+          jobTitle: "Job title 2",
           company: "Some 2 company",
           location: "This is a 2nd location",
           descriptions: [
@@ -49,7 +49,7 @@ async function fillInTemplate(executeData) {
           ],
         },
         {
-          job_title: "Job title 3",
+          jobTitle: "Job title 3",
           company: "Some 3 company",
           location: "This is a 3rd location",
           descriptions: [
