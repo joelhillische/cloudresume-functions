@@ -28,46 +28,28 @@ async function fillInTemplate(executeData) {
       linebreaks: true,
     });
 
-    /*
-    {#experiences}
-    {job_title}, {company}, {location}
-    {#descriptions}
-    - {text}
-    {/descriptions}
-    {/experiences}
-    */
-
     const data = {
-      experiences: [],
-      skills: [],
-      educations: [],
-      name: "Some Name",
-      hasMotto: false,
-      hasPhoneNumber: false,
-      phoneNumber: null,
-      hasEmail: true,
-      email: "test@example.com",
-      hasHighlights: true,
-      hasCollege: true,
-      colleges: [
-        {
-          degree: "Test degree",
-          institution: "Some institution",
-          graduationYear: "2009",
-        },
-      ],
-      activities: [],
-      certifications: [],
-      highlights: "This is a paragraph of highlights.",
-      hasCollege: true,
-      experiences: [
-        {
-          job_title: "Job Title",
-          company: "Some company",
-          location: "Some location",
-          descriptions: [{ text: "This is a description" }],
-        },
-      ],
+      activities: executeData.activities,
+      certifications: executeData.certifications,
+      educations: executeData.educations,
+      email: executeData.email,
+      experiences: executeData.experiences,
+      highlights: executeData.highlights,
+      motto: executeData.motto, // Add motto to data
+      name: executeData.name,
+      phoneNumber: executeData.phoneNumber,
+      skills: executeData.skills,
+      hasActivities: executeData.activities.length > 0,
+      hasCertifications: executeData.certifications.length > 0,
+      hasEducations: executeData.educations.length > 0,
+      hasEmail: executeData.email !== null,
+      hasExperiences: executeData.experiences.length > 0,
+      hasJobs: executeData.jobs.length > 0,
+      hasSkills: executeData.skills.length > 0,
+      hasName: executeData.name !== null,
+      hasPhoneNumber: executeData.phoneNumber !== null,
+      hasHighlights: executeData.highlights !== null,
+      hasMotto: executeData.motto !== null, // Add hasMotto condition
     };
 
     // Render the document using the data

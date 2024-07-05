@@ -11,14 +11,19 @@ async function getInitialData(executeData) {
     // Fetch specific job data
     const jobData = await fetchSpecificJob(jobId);
 
-    executeData.experiences = userData.experiences;
-    executeData.jobs = userData.jobs;
-    executeData.activities = userData.activities;
-    executeData.educations = userData.educations;
-    executeData.skills = userData.skills;
-    executeData.certifications = userData.certifications;
-    executeData.updates = userData.updates;
-    executeData.jobData = jobData;
+    executeData.name = "Test name in get Initial Data";
+    executeData.phoneNumber = "612-555-1968";
+    executeData.highlights = "This is my highlight!";
+    executeData.motto = "Work smarter, not harder";
+    executeData.email = "joel@mosava.net";
+    executeData.experiences = userData.experiences || [];
+    executeData.jobs = userData.jobs || [];
+    executeData.activities = userData.activities || [];
+    executeData.educations = userData.educations || [];
+    executeData.skills = userData.skills || [];
+    executeData.certifications = userData.certifications || [];
+    executeData.updates = userData.updates || [];
+    executeData.jobData = jobData || [];
 
     return true;
   } catch (error) {
