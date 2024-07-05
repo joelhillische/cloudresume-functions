@@ -28,34 +28,44 @@ async function fillInTemplate(executeData) {
       linebreaks: true,
     });
 
+    /*
+    {#experiences}
+    {job_title}, {company}, {location}
+    {#descriptions}
+    - {text}
+    {/descriptions}
+    {/experiences}
+    */
+
     const data = {
+      experiences: [],
+      skills: [],
+      educations: [],
+      name: "Some Name",
+      hasMotto: false,
+      hasPhoneNumber: false,
+      phoneNumber: null,
+      hasEmail: true,
+      email: "test@example.com",
+      hasHighlights: true,
+      hasCollege: true,
+      colleges: [
+        {
+          degree: "Test degree",
+          institution: "Some institution",
+          graduationYear: "2009",
+        },
+      ],
+      activities: [],
+      certifications: [],
+      highlights: "This is a paragraph of highlights.",
+      hasCollege: true,
       experiences: [
         {
-          jobTitle: "Some job title",
+          job_title: "Job Title",
           company: "Some company",
-          location: "This is a location",
-          descriptions: [
-            { text: "This is some text" },
-            { text: "This is some other text" },
-          ],
-        },
-        {
-          jobTitle: "Job title 2",
-          company: "Some 2 company",
-          location: "This is a 2nd location",
-          descriptions: [
-            { text: "This is some text" },
-            { text: "This is some other text" },
-          ],
-        },
-        {
-          jobTitle: "Job title 3",
-          company: "Some 3 company",
-          location: "This is a 3rd location",
-          descriptions: [
-            { text: "This is some text" },
-            { text: "This is some other text" },
-          ],
+          location: "Some location",
+          descriptions: [{ text: "This is a description" }],
         },
       ],
     };

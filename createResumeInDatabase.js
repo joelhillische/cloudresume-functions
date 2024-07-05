@@ -89,6 +89,9 @@ const addOrUpdateResume = async (executeData) => {
         certifications: certifications,
         description: description,
         motto: motto,
+        docxUrl: docxUrl,
+        txtUrl: txtUrl,
+        pdfUrl: pdfUrl,
         currentVersion: newVersion,
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       });
