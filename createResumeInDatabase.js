@@ -21,6 +21,9 @@ const addOrUpdateResume = async (executeData) => {
   const certifications = executeData.certifications || [];
   const description = executeData.description || "";
   const motto = executeData.motto || "";
+  const docxUrl = executeData.docxUrl || "";
+  const pdfUrl = executeData.pdfUrl || "";
+  const txtUrl = executeData.txtUrl || "";
 
   try {
     // Query to check if a resume with the same userId and jobId already exists
@@ -86,6 +89,9 @@ const addOrUpdateResume = async (executeData) => {
         certifications: certifications,
         description: description,
         motto: motto,
+        docxUrl: docxUrl,
+        txtUrl: txtUrl,
+        pdfUrl: pdfUrl,
         currentVersion: newVersion,
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       });

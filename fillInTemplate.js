@@ -29,35 +29,27 @@ async function fillInTemplate(executeData) {
     });
 
     const data = {
-      experiences: [
-        {
-          job_title: "Some job title",
-          company: "Some company",
-          location: "This is a location",
-          descriptions: [
-            { text: "This is some text" },
-            { text: "This is some other text" },
-          ],
-        },
-        {
-          job_title: "Job title 2",
-          company: "Some 2 company",
-          location: "This is a 2nd location",
-          descriptions: [
-            { text: "This is some text" },
-            { text: "This is some other text" },
-          ],
-        },
-        {
-          job_title: "Job title 3",
-          company: "Some 3 company",
-          location: "This is a 3rd location",
-          descriptions: [
-            { text: "This is some text" },
-            { text: "This is some other text" },
-          ],
-        },
-      ],
+      activities: executeData.activities,
+      certifications: executeData.certifications,
+      educations: executeData.educations,
+      email: executeData.email,
+      experiences: executeData.experiences,
+      highlights: executeData.highlights,
+      motto: executeData.motto,
+      name: executeData.name,
+      phoneNumber: executeData.phoneNumber,
+      skills: executeData.skills,
+      hasActivities: executeData.activities.length > 0,
+      hasCertifications: executeData.certifications.length > 0,
+      hasEducations: executeData.educations.length > 0,
+      hasEmail: executeData.email !== null,
+      hasExperiences: executeData.experiences.length > 0,
+      hasJobs: executeData.jobs.length > 0,
+      hasSkills: executeData.skills.length > 0,
+      hasName: executeData.name !== null,
+      hasPhoneNumber: executeData.phoneNumber !== null,
+      hasHighlights: executeData.highlights !== null,
+      hasMotto: executeData.motto !== null, // Add hasMotto condition
     };
 
     // Render the document using the data

@@ -4,22 +4,33 @@ async function getInitialData(executeData) {
   const { userId, jobId } = executeData.initialData;
   console.log(`User ID: ${userId}, Job ID: ${jobId}`);
 
-  // Fetch user data
-  const userData = await fetchUserData(userId);
+  try {
+    // Fetch user data
+    const userData = await fetchUserData(userId);
 
-  // Fetch specific job data
-  const jobData = await fetchSpecificJob(jobId);
+    // Fetch specific job data
+    const jobData = await fetchSpecificJob(jobId);
 
-  executeData.experiences = userData.experiences;
-  executeData.jobs = userData.jobs;
-  executeData.activities = userData.activities;
-  executeData.educations = userData.educations;
-  executeData.skills = userData.skills;
-  executeData.certifications = userData.certifications;
-  executeData.updates = userData.updates;
-  executeData.jobData = jobData;
+    executeData.name = "Test name in get Initial Data";
+    executeData.phoneNumber = "612-555-1968";
+    executeData.highlights = "This is my highlight!";
+    executeData.motto = "Work smarter, not harder";
+    executeData.email = "joel@mosava.net";
 
-  return true;
+    executeData.experiences = userData.experiences || [];
+    executeData.jobs = userData.jobs || [];
+    executeData.activities = userData.activities || [];
+    executeData.educations = userData.educations || [];
+    executeData.skills = userData.skills || [];
+    executeData.certifications = userData.certifications || [];
+    executeData.updates = userData.updates || [];
+    executeData.jobData = jobData || [];
+
+    return true;
+  } catch (error) {
+    console.error("Error fetching initial data:", error);
+    return false;
+  }
 }
 
 async function fetchUserData(userId) {
@@ -49,6 +60,7 @@ async function fetchUserData(userId) {
     skills,
     activities,
     updates,
+    personals,
   ] = await Promise.all([
     fetchCollectionByUserId("experiences", userId),
     fetchCollectionByUserId("jobs", userId),
@@ -57,6 +69,7 @@ async function fetchUserData(userId) {
     fetchCollectionByUserId("skills", userId),
     fetchCollectionByUserId("activities", userId),
     fetchCollectionByUserId("updates", userId),
+    fetchCollectionByUserId("personals", userId),
   ]);
 
   return {
