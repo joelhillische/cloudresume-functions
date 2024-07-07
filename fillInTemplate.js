@@ -35,7 +35,7 @@ async function fillInTemplate(executeData) {
       email: executeData.email,
       experiences: executeData.experiences,
       highlights: executeData.highlights,
-      motto: executeData.motto, // Add motto to data
+      motto: executeData.motto,
       name: executeData.name,
       phoneNumber: executeData.phoneNumber,
       skills: executeData.skills,

@@ -16,6 +16,7 @@ async function getInitialData(executeData) {
     executeData.highlights = "This is my highlight!";
     executeData.motto = "Work smarter, not harder";
     executeData.email = "joel@mosava.net";
+
     executeData.experiences = userData.experiences || [];
     executeData.jobs = userData.jobs || [];
     executeData.activities = userData.activities || [];
@@ -59,6 +60,7 @@ async function fetchUserData(userId) {
     skills,
     activities,
     updates,
+    personals,
   ] = await Promise.all([
     fetchCollectionByUserId("experiences", userId),
     fetchCollectionByUserId("jobs", userId),
@@ -67,6 +69,7 @@ async function fetchUserData(userId) {
     fetchCollectionByUserId("skills", userId),
     fetchCollectionByUserId("activities", userId),
     fetchCollectionByUserId("updates", userId),
+    fetchCollectionByUserId("personals", userId),
   ]);
 
   return {
