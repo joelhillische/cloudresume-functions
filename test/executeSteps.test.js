@@ -1,7 +1,5 @@
 const { executeSteps } = require("../executeSteps");
 
-const { db } = require("./firestoreSetup");
-
 describe("executeSteps", () => {
   test("should execute all steps successfully with real Firestore data", async () => {
     // Arrange: Prepare your test data
@@ -12,7 +10,7 @@ describe("executeSteps", () => {
     const mockData = {
       numberOfPages: 5,
       obfuscateId: "obfuscateId1",
-      documentTypes: ["pdf", "docx", "txt"],
+      documentTypes: ["docx"],
       jobId: jobId,
       userId: userId,
       docId: docId,

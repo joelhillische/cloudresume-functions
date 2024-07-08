@@ -55,6 +55,8 @@ const addOrUpdateResume = async (executeData) => {
       });
 
       console.log("Resume added with ID:", resumeRef.id);
+
+      executeData.resumeId = resumeRef.id;
     } else {
       // If a resume with the same userId and jobId already exists
       const resumeDoc = resumeQuerySnapshot.docs[0];
@@ -95,6 +97,8 @@ const addOrUpdateResume = async (executeData) => {
         currentVersion: newVersion,
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       });
+
+      executeData.resumeId = resumeDoc.id;
 
       console.log(
         `Resume updated and versioned with new version: ${newVersion}`

@@ -6,17 +6,11 @@ async function writeUrlsToDatabase(executeData) {
     const txtUrl = executeData.txtUrl;
     const pdfUrl = executeData.pdfUrl;
 
-    console.log(docxUrl);
-
-    const userId = executeData.initialData.userId;
-    const jobId = executeData.initialData.jobId;
-
     // Query to check if a resume with the same userId and jobId already exists
     const resumeQuerySnapshot = await admin
       .firestore()
       .collection("resumes")
-      .where("userId", "==", userId)
-      .where("jobId", "==", jobId)
+      .doc(executeData.resumeId)
       .get();
 
     if (resumeQuerySnapshot.empty) {

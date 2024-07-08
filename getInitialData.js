@@ -11,11 +11,7 @@ async function getInitialData(executeData) {
     // Fetch specific job data
     const jobData = await fetchSpecificJob(jobId);
 
-    executeData.name = "Test name in get Initial Data";
-    executeData.phoneNumber = "612-555-1968";
-    executeData.highlights = "This is my highlight!";
-    executeData.motto = "Work smarter, not harder";
-    executeData.email = "joel@mosava.net";
+    executeData.personals = userData.personals;
 
     executeData.experiences = userData.experiences || [];
     executeData.jobs = userData.jobs || [];
@@ -80,6 +76,7 @@ async function fetchUserData(userId) {
     skills,
     activities,
     updates,
+    personals,
   };
 }
 
