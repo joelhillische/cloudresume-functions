@@ -41,6 +41,11 @@ async function convertDocs(executeData) {
         // Retrieve secret from environment variables
         docxUrl =
           "https://firebasestorage.googleapis.com/v0/b/cloudresume-e9e4e.appspot.com/o/docs%2Ftests%2Foutput.docx?alt=media&token=1060e828-8121-4b23-9a23-863e43b60b52";
+      } else {
+        cloudConvert = new CloudConvert(
+          await getCloudConvertApiKey("SANDBOX_CLOUD_CONVERT_KEY"),
+          true
+        );
       }
 
       console.log(`docxUrl: ${docxUrl}`);

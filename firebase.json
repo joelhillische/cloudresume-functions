@@ -15,7 +15,8 @@
     "singleProjectMode": true
   },
   "functions": {
-    "source": "functions"
+    "source": ".",
+    "runtime": "nodejs22"
   },
   "firestore": {
     "rules": "firestore.rules",

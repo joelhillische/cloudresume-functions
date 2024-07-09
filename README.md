@@ -19,3 +19,11 @@ firebase emulators:start --only firestore,storage
 ```
 npm test
 ```
+
+## Production
+
+In order to deploy to production you will need to run the following
+
+```
+firebase deploy --only  functions
+```
