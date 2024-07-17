@@ -10,6 +10,7 @@ const { executeSteps } = require("./executeSteps");
 exports.generateResume = functions.firestore
   .document("generateResumes/{docId}")
   .onCreate(async (snap, context) => {
+    const docId = context.params.docId;
     const data = snap.data();
 
     const numberOfPages = data.numberOfPages || 2;

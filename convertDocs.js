@@ -48,8 +48,6 @@ async function convertDocs(executeData) {
         );
       }
 
-      console.log(`docxUrl: ${docxUrl}`);
-
       const job = await cloudConvert.jobs.create({
         tasks: {
           "import-my-file": {

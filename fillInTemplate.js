@@ -5,11 +5,11 @@ const admin = require("firebase-admin");
 
 async function fillInTemplate(executeData) {
   try {
-    const templateId = executeData.initialData.templateId;
+    // const templateId = executeData.initialData.templateId || "lijXG0Q0dIrWvzlGqbZI";
 
     const outputLocation = executeData.initialData.outputLocation;
 
-    const templatePath = `docs/templates/${templateId}/template.docx`;
+    const templatePath = "docs/templates/lijXG0Q0dIrWvzlGqbZI/template.docx";
     const localOutputPath = "/tmp/output.docx";
     const remoteOutputPath = `${outputLocation}/output.docx`;
 

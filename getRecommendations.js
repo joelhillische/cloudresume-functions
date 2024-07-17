@@ -28,10 +28,12 @@ async function getRecommendations(executeData) {
     "4eV2B0RJVzYwSxl0HqCL",
   ];
 
+  /*
   executeData.experiences = sortExperiences(
     executeData.experiences,
     rankedExperiences
   );
+  */
 
   return true;
 }

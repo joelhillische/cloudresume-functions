@@ -54,8 +54,6 @@ const addOrUpdateResume = async (executeData) => {
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       });
 
-      console.log("Resume added with ID:", resumeRef.id);
-
       executeData.resumeId = resumeRef.id;
     } else {
       // If a resume with the same userId and jobId already exists

@@ -10,29 +10,38 @@ async function executeSteps(data) {
     initialData: data,
   };
 
+  console.log(executeData.initialData.templateId);
+
   try {
+    console.log("Getting initial data");
     // This gets all exps, jobs, etc. belonging to a user that was based into the initial execute steps
     await getInitialData(executeData);
 
+    console.log("Getting Recommendations");
     // This calls Open AI with the experiences and updates (for now)
     await getRecommendations(executeData);
 
+    console.log("Creating Resume in Database");
     // This writes the resume to the database
     await createResumeInDatabase(executeData);
 
+    console.log("Filling in the template");
     // Creates docx by filling in the template
     await fillInTemplate(executeData);
 
+    console.log("Converting the docs");
     // Call to cloudconvert and writes pdf, txt to executeData
     await convertDocs(executeData);
-
-    console.log(executeData);
 
     await writeUrlsToDatabase(executeData);
 
     const pdfUrl = executeData.pdfUrl;
     const txtUrl = executeData.txtUrl;
     const docxUrl = executeData.docxUrl;
+
+    console.log(`pdfUrl: ${pdfUrl}`);
+    console.log(`txtUrl: ${txtUrl}`);
+    console.log(`docxurl: ${docxUrl}`);
 
     return {
       status: "All steps complete",
